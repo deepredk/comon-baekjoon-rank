@@ -1,9 +1,14 @@
-const express = require('express');
-const { apiRouter } = require('./routers/apiRouter');
+const express = require("express");
+const { getProfile } = require("./controllers/apiController");
+const { apiRouter } = require("./routers/apiRouter");
 
 const app = express();
 
-app.use(express.static('dist'));
-app.use('/api', apiRouter);
+app.use(express.static("dist"));
+app.use("/api", apiRouter);
 
-app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
+app.listen(process.env.PORT || 8080, () =>
+  console.log(`Listening on port ${process.env.PORT || 8080}!`)
+);
+
+console.log(getProfile("deepred"));
