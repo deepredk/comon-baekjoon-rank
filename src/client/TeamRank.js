@@ -6,7 +6,7 @@ export default function TeamRank() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    axios.get("http://3.34.245.34:8080/api/teamrank").then((response) => {
+    axios.get("http://3.34.245.34/api/teamrank").then((response) => {
       setTeams(response.data);
     });
   }, []);
