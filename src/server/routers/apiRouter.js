@@ -1,7 +1,13 @@
-const express = require('express');
-const { getUsername } = require('../controllers/apiController');
+const express = require("express");
+const {
+  getTeamRank,
+  getPersonalRank,
+  getProfileInfo,
+} = require("../controllers/apiController");
 
 const apiRouter = express.Router();
-apiRouter.get('/getUsername', getUsername);
+apiRouter.get("/teamrank", getTeamRank);
+apiRouter.get("/rank", getPersonalRank);
+apiRouter.get("/profile/:baekjoonId", getProfileInfo);
 
 exports.apiRouter = apiRouter;

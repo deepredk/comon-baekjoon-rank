@@ -1,6 +1,6 @@
 const express = require("express");
-const { getProfile } = require("./controllers/apiController");
 const { apiRouter } = require("./routers/apiRouter");
+const { startCrawling } = require("./controllers/crawler");
 
 const app = express();
 
@@ -11,4 +11,4 @@ app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`)
 );
 
-console.log(getProfile("deepred"));
+startCrawling();
