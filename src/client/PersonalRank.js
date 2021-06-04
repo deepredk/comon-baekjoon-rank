@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useState, useEffect } from "react";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
+import axios from "axios";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -37,22 +37,15 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(rank, name, tier, experience, lastSubmit, account) {
-  return {
-    rank, name, tier, experience, lastSubmit, account
-  };
-}
-
-const rows = [
-  createData(1, '김진홍', 'Gold IV', '100,000Exp', '1시간 전', 'deepred'),
-  createData(2, '김수진', 'Silver V', '100,000Exp', '1시간 전', 'deepred'),
-  createData(3, '정형일', 'Bronze I', '100,000Exp', '1시간 전', 'deepred'),
-  createData(4, '이승현', 'Bronze II', '100,000Exp', '1시간 전', 'deepred'),
-  createData(5, '정회운', 'Bronze V', '100,000Exp', '1시간 전', 'deepred'),
-];
-
 export default function PersonalRank() {
   const classes = useStyles();
+  const [people, setPeople] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/rank").then((response) => {
+      setPeople(response.data);
+    });
+  }, []);
 
   return (
     <TableContainer component={Paper} className={classes.table}>
@@ -71,21 +64,25 @@ export default function PersonalRank() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.rank}>
-              <StyledTableCell>{row.rank}</StyledTableCell>
+          {people.map((person) => (
+            <StyledTableRow key={person.baekjoonId}>
+              <StyledTableCell>{person.rank}</StyledTableCell>
               <StyledTableCell align="center">
                 <Link
-                  href={`https://acmicpc.net/user/${row.account}`}
-                  style={{ color: '#1769aa' }}
+                  href={`https://acmicpc.net/user/${person.baekjoonId}`}
+                  style={{ color: "#1769aa" }}
                   target="_blank"
                 >
-                  {row.name}
+                  {person.name}
                 </Link>
               </StyledTableCell>
-              <StyledTableCell align="center">{row.tier}</StyledTableCell>
-              <StyledTableCell align="center">{row.experience}</StyledTableCell>
-              <StyledTableCell align="right">{row.lastSubmit}</StyledTableCell>
+              <StyledTableCell align="center">{person.tier}</StyledTableCell>
+              <StyledTableCell align="center">
+                {person.exp}Exp
+              </StyledTableCell>
+              <StyledTableCell align="right">
+                {person.lastSubmitted}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

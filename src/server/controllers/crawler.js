@@ -25,7 +25,7 @@ const fetchTierAndExp = async (baekjoonId) => {
 
   const tier = response.data.split("<b>")[1].split("</b>")[0];
   const exp = parseInt(
-    response.data.split("<b>")[2].split("</b>")[0].replace(/,/gi, "")
+    response.data.split("<b>")[2].split("Exp</b>")[0].replace(/,/gi, "")
   );
 
   const expHistoryJsonStr = response.data
@@ -47,7 +47,8 @@ const fetchTierAndExp = async (baekjoonId) => {
   const historyAWeekAgo = historyInAWeek[length - 1];
   const expAWeekAgo = parseInt(historyAWeekAgo.exp);
 
-  expInAWeek = exp - expAWeekAgo;
+  let expInAWeek = exp - expAWeekAgo;
+  if (expInAWeek < 0) expInAWeek = 0;
 
   return { tier, exp: addComma(exp), expInAWeek: addComma(expInAWeek) };
 };

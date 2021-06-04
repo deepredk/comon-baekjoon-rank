@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TeamRankCard({ rank, teamName, members, experience }) {
+export default function TeamRankCard({ rank, teamName, members, expInAWeek }) {
   const classes = useStyles();
 
   return (
@@ -36,21 +36,19 @@ export default function TeamRankCard({ rank, teamName, members, experience }) {
         <Typography variant="h5" component="h2">
           {teamName}
           <span className="rank">
-            {rank === 1 && <LooksOneIcon style={{ color: '#ffb300' }} /> }
-            {rank === 2 && <LooksTwoIcon style={{ color: '#757575' }} /> }
-            {rank === 3 && <LooksThreeIcon style={{ color: '#8d6e63' }} /> }
+            {rank === 1 && <LooksOneIcon style={{ color: "#ffb300" }} />}
+            {rank === 2 && <LooksTwoIcon style={{ color: "#757575" }} />}
+            {rank === 3 && <LooksThreeIcon style={{ color: "#8d6e63" }} />}
           </span>
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {members.join(', ')}
+          {members.join(", ")}
         </Typography>
         <Typography variant="body1" align="right">
           최근 7일
         </Typography>
         <Typography variant="h5" align="right">
-          {experience}
-          {' '}
-          Exp
+          {expInAWeek} Exp
         </Typography>
       </CardContent>
     </Card>
