@@ -33,7 +33,6 @@ const StyledTableRow = withStyles(theme => ({
 const useStyles = makeStyles({
   table: {
     minWidth: 360,
-    borderRadius: 0
   },
 });
 
@@ -48,7 +47,7 @@ export default function PersonalRank() {
   }, []);
 
   return (
-    <TableContainer component={Paper} className={classes.table}>
+    <TableContainer component={Paper} className={classes.table} style={{marginTop: 10, backgroundColor: '#fafafa',}}>
       <Table
         className={classes.table}
         size="small"
@@ -77,9 +76,7 @@ export default function PersonalRank() {
                 </Link>
               </StyledTableCell>
               <StyledTableCell align="center">{person.tier}</StyledTableCell>
-              <StyledTableCell align="center">
-                {person.exp}Exp
-              </StyledTableCell>
+              <StyledTableCell align="center">{person.exp}</StyledTableCell>
               <StyledTableCell align="right">
                 {person.lastSubmitted}
               </StyledTableCell>

@@ -19,9 +19,10 @@ function TabPanel(props) {
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
+      style={{ backgroundColor: "#fafafa" }}
     >
       {value === index && (
-        <Box p={0} style={{ backgroundColor: '#fafafa', marginBottom: 5 }}>
+        <Box p={0} style={{ backgroundColor: "#fafafa", marginBottom: 5 }}>
           {children}
         </Box>
       )}
