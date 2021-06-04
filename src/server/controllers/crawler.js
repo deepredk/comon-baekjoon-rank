@@ -89,7 +89,7 @@ const crawle = () => {
     })
     .then(() => {
       for (let i = 0; i < teams.length; i++) {
-        teams[i].expInAWeek = '0';
+        teams[i].expInAWeek = "0";
         for (let j = 0; j < teams[i].members.length; j++) {
           teams[i].expInAWeek = addComma(
             commaStrToInt(teams[i].expInAWeek) +
@@ -128,7 +128,7 @@ const getPersonByName = (name) => {
 let crawleTimer;
 const startCrawling = () => {
   crawle();
-  crawleTimer = setInterval(crawle, 10000);
+  crawleTimer = setInterval(crawle, 30000);
 };
 
 exports.startCrawling = startCrawling;
