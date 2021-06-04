@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import Link from "@material-ui/core/Link";
 import axios from "axios";
 
-const StyledTableCell = withStyles(theme => ({
+const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.common.white,
@@ -22,9 +22,9 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles(theme => ({
+const StyledTableRow = withStyles((theme) => ({
   root: {
-    '&:nth-of-type(odd)': {
+    "&:nth-of-type(odd)": {
       backgroundColor: theme.palette.action.hover,
     },
   },
@@ -41,13 +41,17 @@ export default function PersonalRank() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/rank").then((response) => {
+    axios.get("http://3.24.245.34:8080/api/rank").then((response) => {
       setPeople(response.data);
     });
   }, []);
 
   return (
-    <TableContainer component={Paper} className={classes.table} style={{marginTop: 10, backgroundColor: '#fafafa',}}>
+    <TableContainer
+      component={Paper}
+      className={classes.table}
+      style={{ marginTop: 10, backgroundColor: "#fafafa" }}
+    >
       <Table
         className={classes.table}
         size="small"
