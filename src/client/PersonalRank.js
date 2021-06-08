@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
+import "./PersonalRank.css";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -52,11 +53,7 @@ export default function PersonalRank() {
       className={classes.table}
       style={{ marginTop: 10, backgroundColor: "#fafafa" }}
     >
-      <Table
-        className={classes.table}
-        size="small"
-        aria-label="customized table"
-      >
+      <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
             <StyledTableCell>#</StyledTableCell>
@@ -73,7 +70,7 @@ export default function PersonalRank() {
               <StyledTableCell align="center">
                 <Link
                   href={`https://acmicpc.net/user/${person.baekjoonId}`}
-                  style={{ color: "#1769aa" }}
+                  className="profile_link"
                   target="_blank"
                 >
                   {person.name}

@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import LooksOneIcon from '@material-ui/icons/LooksOne';
-import LooksTwoIcon from '@material-ui/icons/LooksTwo';
-import LooksThreeIcon from '@material-ui/icons/Looks3';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import LooksOneIcon from "@material-ui/icons/LooksOne";
+import LooksTwoIcon from "@material-ui/icons/LooksTwo";
+import LooksThreeIcon from "@material-ui/icons/Looks3";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 
-import './TeamRankCard.css';
+import "./TeamRankCard.css";
 
 const useStyles = makeStyles({
   root: {
@@ -15,9 +15,9 @@ const useStyles = makeStyles({
     minWidth: 275,
   },
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
