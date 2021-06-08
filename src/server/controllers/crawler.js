@@ -41,7 +41,7 @@ const fetchTierAndExp = async (baekjoonId) => {
 
   const length = historyInAWeek.length;
   if (length === 0) {
-    return { tier, exp: addComma(exp), expInAWeek: 0 };
+    return { tier, exp, expInAWeek: 0 };
   }
 
   const historyAWeekAgo = historyInAWeek[length - 1];
@@ -50,7 +50,7 @@ const fetchTierAndExp = async (baekjoonId) => {
   let expInAWeek = exp - expAWeekAgo;
   if (expInAWeek < 0) expInAWeek = 0;
 
-  return { tier, exp: addComma(exp), expInAWeek: addComma(expInAWeek) };
+  return { tier, exp, expInAWeek: expInAWeek };
 };
 
 // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
@@ -65,8 +65,8 @@ const people = [
   { name: "이예은", baekjoonId: "jjklunicc" },
 ];
 const teams = [
-  { teamName: "우리팀화이팀", members: ["김진홍", "이승현"], expInAWeek: "0" },
-  { teamName: "4학년화이팀", members: ["위승빈", "이예은"], expInAWeek: "0" },
+  { teamName: "우리팀화이팀", members: ["김진홍", "이승현"] },
+  { teamName: "4학년화이팀", members: ["위승빈", "이예은"] },
 ];
 
 const getPeople = () => people;
@@ -89,35 +89,29 @@ const crawle = () => {
     })
     .then(() => {
       for (let i = 0; i < teams.length; i++) {
-        teams[i].expInAWeek = "0";
+        teams[i].expInAWeek = 0;
         for (let j = 0; j < teams[i].members.length; j++) {
-          teams[i].expInAWeek = addComma(
-            commaStrToInt(teams[i].expInAWeek) +
-              commaStrToInt(getPersonByName(teams[i].members[j]).expInAWeek)
-          );
+          teams[i].expInAWeek =
+            teams[i].expInAWeek +
+            getPersonByName(teams[i].members[j]).expInAWeek;
         }
       }
     })
     .then(() => {
       people.sort(function (x, y) {
-        return commaStrToInt(y.exp) - commaStrToInt(x.exp);
+        return y.exp - x.exp;
       });
       for (let i = 0; i < people.length; i++) {
         people[i].rank = i + 1;
       }
 
       teams.sort(function (x, y) {
-        return commaStrToInt(y.expInAWeek) - commaStrToInt(x.expInAWeek);
+        return y.expInAWeek - x.expInAWeek;
       });
       for (let i = 0; i < teams.length; i++) {
         teams[i].rank = i + 1;
       }
     });
-};
-
-const commaStrToInt = (commaNumber) => {
-  if (typeof commaNumber === "number") return commaNumber;
-  return parseInt(commaNumber.replace(/,/gi, ""));
 };
 
 const getPersonByName = (name) => {

@@ -11,6 +11,11 @@ import Link from "@material-ui/core/Link";
 import axios from "axios";
 import "./PersonalRank.css";
 
+// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+const addComma = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: theme.palette.primary.light,
@@ -42,7 +47,7 @@ export default function PersonalRank() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    axios.get("http://comon.cf/api/rank").then((response) => {
+    axios.get("http://localhost:3000/api/rank").then((response) => {
       setPeople(response.data);
     });
   }, []);
@@ -77,7 +82,9 @@ export default function PersonalRank() {
                 </Link>
               </StyledTableCell>
               <StyledTableCell align="center">{person.tier}</StyledTableCell>
-              <StyledTableCell align="center">{person.exp}</StyledTableCell>
+              <StyledTableCell align="center" style={{ color: "#ba000d" }}>
+                {person.exp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </StyledTableCell>
               <StyledTableCell align="right">
                 {person.lastSubmitted}
               </StyledTableCell>

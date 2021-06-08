@@ -19,7 +19,9 @@ export default function TeamRank() {
               rank={team.rank}
               teamName={team.teamName}
               members={team.members}
-              expInAWeek={team.expInAWeek}
+              expInAWeek={team.expInAWeek
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             />
           ))
         : null}

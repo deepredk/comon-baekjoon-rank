@@ -6,8 +6,12 @@ import LooksTwoIcon from "@material-ui/icons/LooksTwo";
 import LooksThreeIcon from "@material-ui/icons/Looks3";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
 import "./TeamRankCard.css";
+
+// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+const addComma = (number) => {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
 const useStyles = makeStyles({
   root: {
