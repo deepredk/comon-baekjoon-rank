@@ -47,7 +47,7 @@ export default function PersonalRank() {
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/rank").then((response) => {
+    axios.get("http://comon.cf/api/rank").then((response) => {
       setPeople(response.data);
     });
   }, []);
