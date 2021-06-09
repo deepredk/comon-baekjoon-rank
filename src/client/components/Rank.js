@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "5px",
   },
   tab: {
-    minHeight: "90vh",
+    minHeight: "87.5vh",
   },
 }));
 
