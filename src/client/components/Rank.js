@@ -44,9 +44,6 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-  },
   bg: {
     backgroundColor: "#fafafa",
   },
@@ -69,7 +66,7 @@ export default function Rank() {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.bg}>
       <AppBar position="static" color="default">
         <Tabs
           value={value}
