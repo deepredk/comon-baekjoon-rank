@@ -12,7 +12,7 @@ const getProfile = async (baekjoonId) => {
 
 const fetchLastSubmitted = async (baekjoonId) => {
   const response = await axios.get(
-    `https://www.acmicpc.net/status?problem_id=&user_id=${baekjoonId}&language_id=-1&result_id=-1`
+    `https://www.acmicpc.net/status?problem_id=&user_id=${baekjoonId}&language_id=-1&result_id=-1`,
   );
 
   return response.data.split(`data-method="from-now">`)[1].split(`<`)[0];
@@ -20,12 +20,12 @@ const fetchLastSubmitted = async (baekjoonId) => {
 
 const fetchTierAndExp = async (baekjoonId) => {
   const response = await axios.get(
-    `https://solved.ac/profile/${baekjoonId}/history`
+    `https://solved.ac/profile/${baekjoonId}/history`,
   );
 
   const tier = response.data.split("<b>")[1].split("</b>")[0];
   const exp = parseInt(
-    response.data.split("<b>")[2].split("Exp</b>")[0].replace(/,/gi, "")
+    response.data.split("<b>")[2].split("Exp</b>")[0].replace(/,/gi, ""),
   );
 
   const expHistoryJsonStr = response.data
@@ -36,26 +36,19 @@ const fetchTierAndExp = async (baekjoonId) => {
   const aWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
 
   const historyInAWeek = expHistories.filter(
-    (history) => parseInt(history.timestamp) >= aWeekAgo
+    (history) => parseInt(history.timestamp) >= aWeekAgo,
   );
 
-  const length = historyInAWeek.length;
-  if (length === 0) {
-    return { tier, exp, expInAWeek: 0 };
-  }
+  const expsInAWeek = historyInAWeek.map((history) => history.exp);
+  const minExpInAWeek = expsInAWeek.reduce(
+    (acc, cur) => Math.min(cur, acc),
+    exp,
+  );
 
-  const historyAWeekAgo = historyInAWeek[length - 1];
-  const expAWeekAgo = parseInt(historyAWeekAgo.exp);
-
-  let expInAWeek = exp - expAWeekAgo;
+  let expInAWeek = exp - minExpInAWeek;
   if (expInAWeek < 0) expInAWeek = 0;
 
-  return { tier, exp, expInAWeek: expInAWeek };
-};
-
-// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-const addComma = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return { tier, exp, expInAWeek };
 };
 
 const people = [
