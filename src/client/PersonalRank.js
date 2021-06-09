@@ -9,12 +9,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
-import "./PersonalRank.css";
-
-// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-const addComma = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -40,11 +34,25 @@ const useStyles = makeStyles({
   table: {
     minWidth: 360,
   },
+  exp: {
+    color: "#ba000d",
+  },
+  container: {
+    marginTop: 10,
+    backgroundColor: "#fafafa"
+  },
+  profileLink: {
+    color: "#1769aa",
+  }
 });
 
 export default function PersonalRank() {
   const classes = useStyles();
   const [people, setPeople] = useState([]);
+
+  const addComma = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
   useEffect(() => {
     axios.get("http://localhost:3000/api/rank").then((response) => {
@@ -55,8 +63,7 @@ export default function PersonalRank() {
   return (
     <TableContainer
       component={Paper}
-      className={classes.table}
-      style={{ marginTop: 10, backgroundColor: "#fafafa" }}
+      className={`${classes.table} ${classes.container}`} 
     >
       <Table className={classes.table} size="small">
         <TableHead>
@@ -75,15 +82,15 @@ export default function PersonalRank() {
               <StyledTableCell align="center">
                 <Link
                   href={`https://acmicpc.net/user/${person.baekjoonId}`}
-                  className="profile_link"
+                  className={classes.profileLink}
                   target="_blank"
                 >
                   {person.name}
                 </Link>
               </StyledTableCell>
               <StyledTableCell align="center">{person.tier}</StyledTableCell>
-              <StyledTableCell align="center" style={{ color: "#ba000d" }}>
-                {person.exp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              <StyledTableCell align="center" className={classes.exp}>
+                {addComma(person.exp)}
               </StyledTableCell>
               <StyledTableCell align="right">
                 {person.lastSubmitted}
