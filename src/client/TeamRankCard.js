@@ -6,12 +6,6 @@ import LooksTwoIcon from "@material-ui/icons/LooksTwo";
 import LooksThreeIcon from "@material-ui/icons/Looks3";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import "./TeamRankCard.css";
-
-// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-const addComma = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
 
 const useStyles = makeStyles({
   root: {
@@ -29,20 +23,39 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
+  rankFirst: {
+    color: "#ffb300",
+  },
+  rankSecond: {
+    color: "#757575",
+  },
+  rankThird: {
+    color: "#8d6e63",
+  },
+  rank: {
+    marginLeft: "5px",
+    width: "60px",
+    height: "60px",
+  }
 });
 
 export default function TeamRankCard({ rank, teamName, members, expInAWeek }) {
   const classes = useStyles();
+
+  // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  const addComma = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
           {teamName}
-          <span className="rank">
-            {rank === 1 && <LooksOneIcon style={{ color: "#ffb300" }} />}
-            {rank === 2 && <LooksTwoIcon style={{ color: "#757575" }} />}
-            {rank === 3 && <LooksThreeIcon style={{ color: "#8d6e63" }} />}
+          <span className={classes.rank}>
+            {rank === 1 && <LooksOneIcon className={classes.rankFirst}   />}
+            {rank === 2 && <LooksTwoIcon className={classes.rankSecond} />}
+            {rank === 3 && <LooksThreeIcon className={classes.rankThird} />}
           </span>
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
@@ -52,7 +65,7 @@ export default function TeamRankCard({ rank, teamName, members, expInAWeek }) {
           최근 7일
         </Typography>
         <Typography variant="h5" align="right">
-          {expInAWeek} Exp
+          {addComma(expInAWeek)} Exp
         </Typography>
       </CardContent>
     </Card>
