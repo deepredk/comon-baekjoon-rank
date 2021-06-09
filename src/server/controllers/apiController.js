@@ -1,25 +1,19 @@
-import { getProfile, getPeople, getTeams } from "./crawler";
+import { getProfile, getPeople, getTeams } from "./crawler.js";
 
-const crawled = (people, members) => {
+export const crawled = (people, members) => {
   this.people = people;
   this.member = members;
 };
 
-// 개인 랭킹 json
-const getPersonalRank = (req, res) => {
+export const getPersonalRank = (req, res) => {
   return res.json(getPeople());
 };
-// 팀 랭킹 json
-const getTeamRank = (req, res) => {
+
+export const getTeamRank = (req, res) => {
   return res.json(getTeams());
 };
 
-const getProfileInfo = (req, res) => {
+export const getProfileInfo = (req, res) => {
   const { baekjoonId } = req.params;
   getProfile(baekjoonId).then((profile) => res.send(profile));
 };
-
-exports.getPersonalRank = getPersonalRank;
-exports.getTeamRank = getTeamRank;
-exports.getProfileInfo = getProfileInfo;
-exports.crawled = crawled;

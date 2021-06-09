@@ -1,6 +1,6 @@
-const axios = require("axios");
+import axios from "axios";
 
-const getProfile = async (baekjoonId) => {
+export const getProfile = async (baekjoonId) => {
   const lastSubmittedPromise = fetchLastSubmitted(baekjoonId);
   const tierAndExpPromise = fetchTierAndExp(baekjoonId);
 
@@ -62,8 +62,8 @@ const teams = [
   { teamName: "4학년화이팀", members: ["위승빈", "이예은"] },
 ];
 
-const getPeople = () => people;
-const getTeams = () => teams;
+export const getPeople = () => people;
+export const getTeams = () => teams;
 
 const crawle = () => {
   const profilePromises = [];
@@ -113,11 +113,7 @@ const getPersonByName = (name) => {
 };
 
 let crawleTimer;
-const startCrawling = () => {
+export const startCrawling = () => {
   crawle();
   crawleTimer = setInterval(crawle, 30000);
 };
-
-exports.startCrawling = startCrawling;
-exports.getPeople = getPeople;
-exports.getTeams = getTeams;

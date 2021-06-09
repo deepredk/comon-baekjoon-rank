@@ -55,7 +55,7 @@ export default function PersonalRank() {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/rank").then((response) => {
+    axios.get("http://localhost:8080/api/rank").then((response) => {
       setPeople(response.data);
     });
   }, []);

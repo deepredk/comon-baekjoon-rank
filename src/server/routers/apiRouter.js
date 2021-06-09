@@ -1,13 +1,13 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   getTeamRank,
   getPersonalRank,
   getProfileInfo,
-} = require("../controllers/apiController");
+} from "../controllers/apiController.js";
 
 const apiRouter = express.Router();
 apiRouter.get("/teamrank", getTeamRank);
 apiRouter.get("/rank", getPersonalRank);
 apiRouter.get("/profile/:baekjoonId", getProfileInfo);
 
-exports.apiRouter = apiRouter;
+export default apiRouter;
