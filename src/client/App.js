@@ -1,6 +1,6 @@
 import React from 'react';
-import TopBar from './TopBar';
-import Content from './Content';
+import TopBar from "./components/TopBar";
+import Content from "./components/Content";
 
 function App() {
   return (
