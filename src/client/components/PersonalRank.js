@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
+import axios from 'axios';
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.primary.light,
     color: theme.palette.common.white,
@@ -22,9 +22,9 @@ const StyledTableCell = withStyles((theme) => ({
   },
 }))(TableCell);
 
-const StyledTableRow = withStyles((theme) => ({
+const StyledTableRow = withStyles(theme => ({
   root: {
-    "&:nth-of-type(odd)": {
+    '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.action.hover,
     },
   },
@@ -35,27 +35,26 @@ const useStyles = makeStyles({
     minWidth: 360,
   },
   exp: {
-    color: "#ba000d",
+    color: '#ba000d',
   },
   container: {
     marginTop: 10,
-    backgroundColor: "#fafafa"
+    backgroundColor: '#fafafa',
   },
   profileLink: {
-    color: "#1769aa",
-  }
+    color: '#1769aa',
+  },
 });
 
 export default function PersonalRank() {
   const classes = useStyles();
   const [people, setPeople] = useState([]);
 
-  const addComma = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
+  const addComma = number =>
+    number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/rank").then((response) => {
+    axios.get('http://localhost:3000/api/rank').then(response => {
       setPeople(response.data);
     });
   }, []);
@@ -63,7 +62,7 @@ export default function PersonalRank() {
   return (
     <TableContainer
       component={Paper}
-      className={`${classes.table} ${classes.container}`} 
+      className={`${classes.table} ${classes.container}`}
     >
       <Table className={classes.table} size="small">
         <TableHead>
@@ -76,7 +75,7 @@ export default function PersonalRank() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {people.map((person) => (
+          {people.map(person => (
             <StyledTableRow key={person.baekjoonId}>
               <StyledTableCell>{person.rank}</StyledTableCell>
               <StyledTableCell align="center">

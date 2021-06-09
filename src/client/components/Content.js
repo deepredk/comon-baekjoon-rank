@@ -1,12 +1,12 @@
 import { Container } from '@material-ui/core';
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
-import Rank from "./Rank";
+import Rank from './Rank';
 
 const useStyles = makeStyles({
   container: {
-    marginTop: "10px",
-    padding: "0",
+    marginTop: '10px',
+    padding: '0',
   },
 });
 

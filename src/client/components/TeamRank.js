@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import TeamRankCard from "./TeamRankCard";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import TeamRankCard from './TeamRankCard';
 
 export default function TeamRank() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/teamrank").then((response) => {
+    axios.get('http://localhost:3000/api/teamrank').then(response => {
       setTeams(response.data);
     });
   }, []);
@@ -14,7 +14,7 @@ export default function TeamRank() {
   return (
     <>
       {teams
-        ? teams.map((team) => (
+        ? teams.map(team => (
             <TeamRankCard
               rank={team.rank}
               teamName={team.teamName}
