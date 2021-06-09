@@ -1,17 +1,21 @@
 import { Container } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 import React from 'react';
-import Rank from './Rank';
-import { styled } from "@material-ui/core/styles";
+import Rank from "./Rank";
 
-const StyledContainer = styled(Container)({
-  marginTop: "10px",
-  padding: "0",
+const useStyles = makeStyles({
+  container: {
+    marginTop: "10px",
+    padding: "0",
+  },
 });
 
 export default function Content() {
+  const classes = useStyles();
+
   return (
-    <StyledContainer maxWidth="md" className="container">
+    <Container maxWidth="md" className={classes.container}>
       <Rank />
-    </StyledContainer>
+    </Container>
   );
 }
