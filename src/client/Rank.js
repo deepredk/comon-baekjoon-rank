@@ -11,6 +11,7 @@ import TeamRank from "./TeamRank";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+  const classes = useStyles();
 
   return (
     <div
@@ -18,10 +19,10 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       {...other}
-      style={{ backgroundColor: "#fafafa" }}
+      className={classes.bg}
     >
       {value === index && (
-        <Box p={0} style={{ backgroundColor: "#fafafa", marginBottom: 5 }}>
+        <Box p={0} className={`${classes.box} ${classes.bg}`}>
           {children}
         </Box>
       )}
@@ -45,6 +46,12 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
+  },
+  bg: {
+    backgroundColor: "#fafafa",
+  },
+  box: {
+    marginBottom: "5px",
   },
 }));
 
