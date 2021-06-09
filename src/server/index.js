@@ -1,6 +1,6 @@
 import express from 'express';
 import apiRouter from './routers/apiRouter';
-import { startCrawling } from './controllers/crawler';
+import * as crawler from './controllers/crawler';
 
 const app = express();
 
@@ -11,4 +11,4 @@ app.listen(process.env.PORT || 8080, () =>
   console.log(`Listening on port ${process.env.PORT || 8080}!`),
 );
 
-startCrawling();
+crawler.startCrawling();
