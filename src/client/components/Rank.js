@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
   box: {
     marginBottom: "5px",
   },
+  tab: {
+    minHeight: "90vh",
+  },
 }));
 
 export default function Rank() {
@@ -84,6 +87,7 @@ export default function Rank() {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
+        className={classes.tab}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
           <TeamRank />
