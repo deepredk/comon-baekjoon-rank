@@ -79,8 +79,8 @@ export default function Rank() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="팀" {...a11yProps(0)} />
-          <Tab label="개인" {...a11yProps(1)} />
+          <Tab label="개인" {...a11yProps(0)} />
+          <Tab label="팀" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -90,10 +90,10 @@ export default function Rank() {
         className={classes.tab}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <TeamRank />
+          <PersonalRank />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <PersonalRank />
+          <TeamRank />
         </TabPanel>
       </SwipeableViews>
     </div>
