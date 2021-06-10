@@ -56,6 +56,7 @@ const useStyles = makeStyles({
     width: '90px',
     display: 'flex',
     alignItems: 'center',
+    marginLeft: '7px',
   },
 });
 
