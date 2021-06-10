@@ -34,9 +34,11 @@ const useStyles = makeStyles({
     color: '#8d6e63',
   },
   rank: {
-    marginLeft: '5px',
-    width: '60px',
-    height: '60px',
+    fontSize: '30px',
+  },
+  teamInfo: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
 
@@ -51,17 +53,33 @@ export default function TeamRankCard({ rank, teamName, members, expInAWeek }) {
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography variant="h5" component="h2">
-          {teamName}
-          <span className={classes.rank}>
-            {rank === 1 && <LooksOneIcon className={classes.rankFirst} />}
-            {rank === 2 && <LooksTwoIcon className={classes.rankSecond} />}
-            {rank === 3 && <LooksThreeIcon className={classes.rankThird} />}
-          </span>
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          {members.join(', ')}
-        </Typography>
+        <div className={classes.teamInfo}>
+          <div>
+            <Typography variant="h5" component="h2">
+              {teamName}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              {members.join(', ')}
+            </Typography>
+          </div>
+          <div>
+            {rank === 1 && (
+              <LooksOneIcon
+                className={`${classes.rankFirst} ${classes.rank}`}
+              />
+            )}
+            {rank === 2 && (
+              <LooksTwoIcon
+                className={`${classes.rankSecond} ${classes.rank}`}
+              />
+            )}
+            {rank === 3 && (
+              <LooksThreeIcon
+                className={`${classes.rankThird} ${classes.rank}`}
+              />
+            )}
+          </div>
+        </div>
         <Typography variant="body1" align="right">
           최근 7일
         </Typography>
