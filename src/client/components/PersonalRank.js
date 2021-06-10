@@ -44,6 +44,19 @@ const useStyles = makeStyles({
   profileLink: {
     color: '#1769aa',
   },
+  tier: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tierImage: {
+    width: '12px',
+  },
+  tierBox: {
+    width: '90px',
+    display: 'flex',
+    alignItems: 'center',
+  },
 });
 
 export default function PersonalRank() {
@@ -58,6 +71,52 @@ export default function PersonalRank() {
       setPeople(response.data);
     });
   }, []);
+
+  const tierNames = [
+    'Unrated',
+    'Bronze V',
+    'Bronze IV',
+    'Bronze III',
+    'Bronze II',
+    'Bronze I',
+    'Silver V',
+    'Silver IV',
+    'Silver III',
+    'Silver II',
+    'Silver I',
+    'Gold V',
+    'Gold IV',
+    'Gold III',
+    'Gold II',
+    'Gold I',
+    'Platinum V',
+    'Platinum IV',
+    'Platinum III',
+    'Platinum II',
+    'Platinum I',
+    'Diamond V',
+    'Diamond IV',
+    'Diamond III',
+    'Diamond II',
+    'Diamond I',
+    'Ruby V',
+    'Ruby IV',
+    'Ruby III',
+    'Ruby II',
+    'Ruby I',
+    'Master',
+  ];
+
+  const getTierColor = tier => {
+    if (tier === 0) return '#000000';
+    if (tier >= 1 && tier <= 5) return '#ad5700';
+    if (tier >= 6 && tier <= 10) return '#435f7a';
+    if (tier >= 11 && tier <= 15) return '#df8f00';
+    if (tier >= 16 && tier <= 20) return '#27e2a4';
+    if (tier >= 21 && tier <= 25) return '#00b4fc';
+    if (tier >= 26 && tier <= 30) return '#ff0062';
+    return '#b491ff';
+  };
 
   return (
     <TableContainer
@@ -87,7 +146,19 @@ export default function PersonalRank() {
                   {person.name}
                 </Link>
               </StyledTableCell>
-              <StyledTableCell align="center">{person.tier}</StyledTableCell>
+              <StyledTableCell align="center" className={classes.tier}>
+                <div className={classes.tierBox}>
+                  <img
+                    className={classes.tierImage}
+                    src={`https://static.solved.ac/tier_small/${person.tier}.svg`}
+                    alt={tierNames[person.tier]}
+                  />
+                  &nbsp;
+                  <span style={{ color: `${getTierColor(person.tier)}` }}>
+                    {tierNames[person.tier]}
+                  </span>
+                </div>
+              </StyledTableCell>
               <StyledTableCell align="center" className={classes.exp}>
                 {addComma(person.exp)}
               </StyledTableCell>

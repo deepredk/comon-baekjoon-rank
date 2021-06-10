@@ -26,7 +26,12 @@ const fetchTierAndExp = async baekjoonId => {
     return null;
   }
 
-  const tier = response.data.split('<b>')[1].split('</b>')[0];
+  const tier = parseInt(
+    response.data
+      .split('img src="https://static.solved.ac/tier_small/')[1]
+      .split('"')[0],
+    10,
+  );
   const exp = parseInt(
     response.data.split('<b>')[2].split('Exp</b>')[0].replace(/,/gi, ''),
     10,
