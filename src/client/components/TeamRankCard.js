@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles({
   root: {
-    marginTop: 10,
+    marginTop: '5px',
     minWidth: 275,
   },
   bullet: {

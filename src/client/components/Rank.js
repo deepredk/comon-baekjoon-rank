@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   box: {
     marginBottom: '5px',
+    padding: '5px',
   },
   tab: {
     minHeight: '87.5vh',
