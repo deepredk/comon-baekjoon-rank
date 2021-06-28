@@ -65,7 +65,7 @@ export default function PersonalRank() {
   const [people, setPeople] = useState([]);
 
   const addComma = number =>
-    number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    String(number).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   useEffect(() => {
     axios.get('http://comon.cf/api/rank').then(response => {

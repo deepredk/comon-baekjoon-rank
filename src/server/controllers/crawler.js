@@ -5,36 +5,31 @@ const fetchTierAndExp = async baekjoonId => {
   let response;
   try {
     response = await axios.get(
-      `https://solved.ac/profile/${baekjoonId}/history`,
+      `https://solved.ac/api/v3/user/show?handle=${baekjoonId}`,
+    );
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+  const { tier, exp } = response.data;
+
+  try {
+    response = await axios.get(
+      `https://solved.ac/api/v3/user/history?handle=${baekjoonId}&topic=exp`,
     );
   } catch (error) {
     console.error(error);
     return null;
   }
 
-  const tier = parseInt(
-    response.data
-      .split('img src="https://static.solved.ac/tier_small/')[1]
-      .split('"')[0],
-    10,
-  );
-  const exp = parseInt(
-    response.data.split('<b>')[2].split('Exp</b>')[0].replace(/,/gi, ''),
-    10,
-  );
-
-  const expHistoryJsonStr = response.data
-    .split('"expHistory":{"success":true,"result":')[1]
-    .split('},"solvedHistory')[0];
-
-  const expHistories = JSON.parse(expHistoryJsonStr);
+  const expHistories = response.data;
   const aWeekAgo = new Date().getTime() - 7 * 24 * 60 * 60 * 1000;
 
   const historyInAWeek = expHistories.filter(
-    history => parseInt(history.timestamp, 10) >= aWeekAgo,
+    history => new Date(history.timestamp).getTime() >= aWeekAgo,
   );
 
-  const expsInAWeek = historyInAWeek.map(history => history.exp);
+  const expsInAWeek = historyInAWeek.map(history => history.value);
   const minExpInAWeek = expsInAWeek.reduce(
     (acc, cur) => Math.min(cur, acc),
     exp,
@@ -78,7 +73,13 @@ const crawle = () => {
   const profilePromises = [];
 
   for (let i = 0; i < people.length; i += 1) {
-    profilePromises.push(getProfile(people[i].baekjoonId));
+    const delay = 500 * i;
+    profilePromises.push(
+      new Promise(async resolve => {
+        await new Promise(res => setTimeout(res, delay));
+        resolve(await getProfile(people[i].baekjoonId));
+      }),
+    );
   }
 
   let idx = 0;
