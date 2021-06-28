@@ -131,7 +131,6 @@ export default function PersonalRank() {
             <StyledTableCell align="center">이름</StyledTableCell>
             <StyledTableCell align="center">티어</StyledTableCell>
             <StyledTableCell align="center">누적 경험치</StyledTableCell>
-            <StyledTableCell align="right">마지막 풀이</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -162,9 +161,6 @@ export default function PersonalRank() {
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.exp}>
                 {addComma(person.exp)}
-              </StyledTableCell>
-              <StyledTableCell align="right">
-                {person.lastSubmitted}
               </StyledTableCell>
             </StyledTableRow>
           ))}

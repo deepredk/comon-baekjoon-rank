@@ -1,20 +1,6 @@
 /* eslint-disable array-callback-return */
 import axios from 'axios';
 
-const fetchLastSubmitted = async baekjoonId => {
-  let response;
-  try {
-    response = await axios.get(
-      `https://www.acmicpc.net/status?problem_id=&user_id=${baekjoonId}&language_id=-1&result_id=-1`,
-    );
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-
-  return response.data.split(`data-method="from-now">`)[1].split(`<`)[0];
-};
-
 const fetchTierAndExp = async baekjoonId => {
   let response;
   try {
@@ -61,15 +47,12 @@ const fetchTierAndExp = async baekjoonId => {
 };
 
 export const getProfile = async baekjoonId => {
-  const lastSubmittedPromise = fetchLastSubmitted(baekjoonId);
   const tierAndExpPromise = fetchTierAndExp(baekjoonId);
 
-  const lastSubmitted = await lastSubmittedPromise;
-  if (lastSubmitted === null) return {};
   const tierAndExp = await tierAndExpPromise;
   if (tierAndExp === null) return {};
 
-  return { ...tierAndExp, lastSubmitted };
+  return { ...tierAndExp };
 };
 
 const people = [
