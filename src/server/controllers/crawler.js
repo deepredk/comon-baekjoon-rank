@@ -85,7 +85,7 @@ const crawle = () => {
   const profilePromises = [];
 
   for (let i = 0; i < people.length; i += 1) {
-    const delay = 100 * i;
+    const delay = 300 * i;
     profilePromises.push(
       new Promise(async resolve => {
         await new Promise(res => setTimeout(res, delay));
@@ -127,5 +127,5 @@ const crawle = () => {
 
 export const startCrawling = () => {
   crawle();
-  setInterval(crawle, 30000);
+  setInterval(crawle, 6000);
 };
