@@ -127,5 +127,5 @@ const crawle = () => {
 
 export const startCrawling = () => {
   crawle();
-  setInterval(crawle, 120000);
+  setInterval(crawle, 60000);
 };
