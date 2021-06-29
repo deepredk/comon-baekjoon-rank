@@ -51,14 +51,26 @@ export const getProfile = async baekjoonId => {
 };
 
 const people = [
-  { name: '김진홍', baekjoonId: 'deepred' },
   { name: '이승현', baekjoonId: 'ujm0524' },
-  { name: '위승빈', baekjoonId: 'wsb0722' },
-  { name: '이예은', baekjoonId: 'jjklunicc' },
+  { name: '정유민', baekjoonId: 'furo9899' },
+  { name: '이민영', baekjoonId: 'dreamlmy1203' },
+  { name: '최지연', baekjoonId: 'cerulean20' },
+  { name: '오승민', baekjoonId: 'gkahsl13' },
+  { name: '전도현', baekjoonId: 'whiterabbit02' },
+  { name: '최강헌', baekjoonId: 'choikangheon' },
+  { name: '최범준', baekjoonId: 'kk7073' },
+  { name: '함창범', baekjoonId: 'hcb1999' },
+  { name: '안예진', baekjoonId: 'yejin0308' },
+  { name: '김수진', baekjoonId: 'pocachip0318' },
+  { name: '정형일', baekjoonId: 'aadsf1789' },
 ];
+
 const teams = [
-  { teamName: '우리팀화이팀', members: ['김진홍', '이승현'] },
-  { teamName: '4학년화이팀', members: ['위승빈', '이예은'] },
+  { teamName: '엽떡', members: ['이승현', '김수진', '정형일'] },
+  { teamName: '팀1', members: ['정유민', '안예진'] },
+  { teamName: '팀2', members: ['오승민', '최범준', '함창범'] },
+  { teamName: '커밋', members: ['이민영', '최지연'] },
+  { teamName: '팀4', members: ['최강헌', '전도현'] },
 ];
 
 export const getPeople = () => people;
