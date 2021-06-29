@@ -45,7 +45,7 @@ export const getProfile = async baekjoonId => {
   const tierAndExpPromise = fetchTierAndExp(baekjoonId);
 
   const tierAndExp = await tierAndExpPromise;
-  if (tierAndExp === null) return {};
+  if (!tierAndExp) return { tier: 0, exp: 0, expInAWeek: 0 };
 
   return { ...tierAndExp };
 };
