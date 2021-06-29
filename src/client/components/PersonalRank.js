@@ -150,17 +150,21 @@ export default function PersonalRank() {
                 <div className={classes.tierBox}>
                   <img
                     className={classes.tierImage}
-                    src={`https://static.solved.ac/tier_small/${person.tier}.svg`}
-                    alt={tierNames[person.tier]}
+                    src={
+                      person.tier
+                        ? `https://static.solved.ac/tier_small/${person.tier}.svg`
+                        : ''
+                    }
+                    alt={person.tier ? tierNames[person.tier] : ''}
                   />
                   &nbsp;
                   <span style={{ color: `${getTierColor(person.tier)}` }}>
-                    {tierNames[person.tier]}
+                    {person.tier ? tierNames[person.tier] : '-'}
                   </span>
                 </div>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.exp}>
-                {addComma(person.exp)}
+                {person.exp ? addComma(person.exp) : '-'}
               </StyledTableCell>
             </StyledTableRow>
           ))}
