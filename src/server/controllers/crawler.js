@@ -9,7 +9,7 @@ const fetchTierAndExp = async baekjoonId => {
     );
   } catch (error) {
     console.error(error);
-    return null;
+    return { tier: 0, exp: 0, expInAWeek: 0 };
   }
   const { tier, exp } = response.data;
 
@@ -19,7 +19,7 @@ const fetchTierAndExp = async baekjoonId => {
     );
   } catch (error) {
     console.error(error);
-    return null;
+    return { tier: 0, exp: 0, expInAWeek: 0 };
   }
 
   const expHistories = response.data;
