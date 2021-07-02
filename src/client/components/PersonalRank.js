@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     minWidth: 360,
   },
   exp: {
-    color: '#ba000d',
+    color: '#3f51b5',
   },
   container: {
     marginTop: '5px',
@@ -130,6 +130,7 @@ export default function PersonalRank() {
             <StyledTableCell>#</StyledTableCell>
             <StyledTableCell align="center">이름</StyledTableCell>
             <StyledTableCell align="center">티어</StyledTableCell>
+            <StyledTableCell align="center">레이팅</StyledTableCell>
             <StyledTableCell align="center">누적 경험치</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -158,6 +159,11 @@ export default function PersonalRank() {
                     {tierNames[person.tier]}
                   </span>
                 </div>
+              </StyledTableCell>
+              <StyledTableCell align="center">
+                <span style={{ color: `${getTierColor(person.tier)}` }}>
+                  {person.rating ? addComma(person.rating) : '-'}
+                </span>
               </StyledTableCell>
               <StyledTableCell align="center" className={classes.exp}>
                 {person.exp ? addComma(person.exp) : '-'}

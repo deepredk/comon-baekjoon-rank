@@ -9,9 +9,9 @@ const fetchTierAndExp = async baekjoonId => {
     );
   } catch (error) {
     console.error(error);
-    return { tier: 0, exp: 0, expInAWeek: 0 };
+    return { tier: 0, exp: 0, expInAWeek: 0, rating: 0 };
   }
-  const { tier, exp } = response.data;
+  const { tier, exp, rating } = response.data;
 
   try {
     response = await axios.get(
@@ -19,7 +19,7 @@ const fetchTierAndExp = async baekjoonId => {
     );
   } catch (error) {
     console.error(error);
-    return { tier: 0, exp: 0, expInAWeek: 0 };
+    return { tier: 0, exp: 0, expInAWeek: 0, rating: 0 };
   }
 
   const expHistories = response.data;
@@ -38,7 +38,7 @@ const fetchTierAndExp = async baekjoonId => {
   let expInAWeek = exp - minExpInAWeek;
   if (expInAWeek < 0) expInAWeek = 0;
 
-  return { tier, exp, expInAWeek };
+  return { rating, tier, exp, expInAWeek };
 };
 
 export const getProfile = async baekjoonId => {
@@ -51,18 +51,18 @@ export const getProfile = async baekjoonId => {
 };
 
 const people = [
-  { name: '이승현', baekjoonId: 'ujm0524', exp: 0, expInAWeek: 0 },
-  { name: '정유민', baekjoonId: 'furo9899', exp: 0, expInAWeek: 0 },
-  { name: '이민영', baekjoonId: 'dreamlmy1203', exp: 0, expInAWeek: 0 },
-  { name: '최지연', baekjoonId: 'cerulean20', exp: 0, expInAWeek: 0 },
-  { name: '오승민', baekjoonId: 'gkahsl13', exp: 0, expInAWeek: 0 },
-  { name: '전도현', baekjoonId: 'whiterabbit02', exp: 0, expInAWeek: 0 },
-  { name: '최강헌', baekjoonId: 'choikangheon', exp: 0, expInAWeek: 0 },
-  { name: '최범준', baekjoonId: 'kk7073', exp: 0, expInAWeek: 0 },
-  { name: '함창범', baekjoonId: 'hcb1999', exp: 0, expInAWeek: 0 },
-  { name: '안예진', baekjoonId: 'yejin0308', exp: 0, expInAWeek: 0 },
-  { name: '김수진', baekjoonId: 'pocachip0318', exp: 0, expInAWeek: 0 },
-  { name: '정형일', baekjoonId: 'aadsf1789', exp: 0, expInAWeek: 0 },
+  { name: '이승현', baekjoonId: 'ujm0524' },
+  { name: '정유민', baekjoonId: 'furo9899' },
+  { name: '이민영', baekjoonId: 'dreamlmy1203' },
+  { name: '최지연', baekjoonId: 'cerulean20' },
+  { name: '오승민', baekjoonId: 'gkahsl13' },
+  { name: '전도현', baekjoonId: 'whiterabbit02' },
+  { name: '최강헌', baekjoonId: 'choikangheon' },
+  { name: '최범준', baekjoonId: 'kk7073' },
+  { name: '함창범', baekjoonId: 'hcb1999' },
+  { name: '안예진', baekjoonId: 'yejin0308' },
+  { name: '김수진', baekjoonId: 'pocachip0318' },
+  { name: '정형일', baekjoonId: 'aadsf1789' },
 ];
 
 const teams = [
