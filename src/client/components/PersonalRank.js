@@ -140,7 +140,7 @@ export default function PersonalRank() {
               <StyledTableCell>{person.rank}</StyledTableCell>
               <StyledTableCell align="center">
                 <Link
-                  href={`https://acmicpc.net/user/${person.baekjoonId}`}
+                  href={`https://solved.ac/profile/${person.baekjoonId}`}
                   className={classes.profileLink}
                   target="_blank"
                 >
