@@ -68,7 +68,7 @@ export default function PersonalRank() {
     String(number).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   useEffect(() => {
-    axios.get('http://comon.cf/api/rank').then(response => {
+    axios.get(`/api/rank`).then(response => {
       setPeople(response.data);
     });
   }, []);
