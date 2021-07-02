@@ -113,7 +113,9 @@ const crawle = () => {
       }
     })
     .then(() => {
-      people.sort((x, y) => y.exp - x.exp);
+      people.sort((x, y) =>
+        x.rating !== y.rating ? y.rating - x.rating : y.exp - x.exp,
+      );
       for (let i = 0; i < people.length; i += 1) {
         people[i].rank = i + 1;
       }
